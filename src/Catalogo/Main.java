@@ -50,6 +50,12 @@ public class Main {
         Order order1 = new Order(001,"delivered", LocalDate.of(2021,3,12),LocalDate.of(2021,3,20),order1List,jhon);
         Order order2 = new Order(002,"delivered",LocalDate.of(2021,3,15),LocalDate.of(2021,3,21),order2List,bob);
         Order order3 = new Order(003,"packing",LocalDate.now(),LocalDate.now().plusDays(3),order3List,luke);
+        List<Order> allOrders = new ArrayList<>();
+        allOrders.add(order1);
+        allOrders.add(order2);
+        allOrders.add(order3);
+        List<Order> filteredOrders = new ArrayList<>();
+        //******************************************************1************************************************************
         Predicate<Product> isaBook = Product -> Product.getCategory().equals("books");
         Predicate<Product> isover100 = Product -> Product.getPrice() > 100;
         booksList = productList.stream().filter(isaBook).filter(isover100).toList();
@@ -57,5 +63,10 @@ public class Main {
         System.out.println(productList);
         System.out.println("books over 100 list");
         System.out.println(booksList);
+        //******************************************************2************************************************************
+        Predicate<Order> containsaBaby = Order -> Order.getProducts().stream().anyMatch(Product -> Product.getCategory().equals("baby"));
+        filteredOrders = allOrders.stream().filter(containsaBaby).toList();
+        System.out.println("orders with baby products");
+        System.out.println(filteredOrders);
     }
 }
