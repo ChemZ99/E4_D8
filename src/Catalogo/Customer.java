@@ -3,7 +3,7 @@ package Catalogo;
 public class Customer {
     private long id;
     private String name;
-    private int tier;
+    private Integer tier;
 
     public Customer(long id, String name, int tier) {
         this.id = id;
@@ -27,7 +27,7 @@ public class Customer {
         this.name = name;
     }
 
-    public int getTier() {
+    public Integer getTier() {
         return tier;
     }
 

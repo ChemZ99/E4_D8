@@ -28,6 +28,7 @@ public class Main {
         productList.add(item1);
         productList.add(item2);
         List<Product> booksList;
+        List<Product> discountedList;
         List<Product> boyscheckList = new ArrayList<>();
         boyscheckList.add(baby1);
         boyscheckList.add(baby2);
@@ -68,5 +69,15 @@ public class Main {
         filteredOrders = allOrders.stream().filter(containsaBaby).toList();
         System.out.println("orders with baby products");
         System.out.println(filteredOrders);
+        //******************************************************3************************************************************
+        Predicate<Product> isaBoy = Product -> Product.getCategory().equals("boys");
+        discountedList = boyscheckList.stream().filter(isaBoy).map(Product -> {Product.setPrice(Product.getPrice() * 0.9);
+        return Product;
+        }).toList();
+        System.out.println("discounted products");
+        System.out.println(discountedList);
+        //******************************************************4************************************************************
+        Predicate<Order> orderedbyt2cust = Order -> Order.getCustomer().getTier().equals(2);
+        Predicate<Order> timelapse = Order -> Order.getOrderDate().isAfter()
     }
 }
